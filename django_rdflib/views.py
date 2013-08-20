@@ -1,22 +1,25 @@
-from django.utils import simplejson
 from django_rdflib.settings import *
 from django import forms
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from rdflib.term import BNode, URIRef, Literal
-from django.forms.fields import TypedChoiceField
-from pprint import pprint
+from rdflib.term import BNode, URIRef
 from django_rdflib.utils import *
 from django_rdflib.forms import *
-from userprofile.models import Profile
-from misc.data_migration import *
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib import messages
-from workspaces.utils import *
+
+
+def rdf_representation(request, site_ns_type, subject, form, literals_nodes):
+    data = {}
+    rdf_repr_dict = {}
+    data['rdf_repr_dict'] = rdf_repr_dict
+    # TODO: implement
+    return data
+
 
 @login_required
 def change_form(request, site_ns_type, name_slug=None, template='django_rdflib/change_form.html', extra_vars={}):
@@ -84,7 +87,6 @@ def change_form(request, site_ns_type, name_slug=None, template='django_rdflib/c
             form = ChangeForm(request.user, site_ns_type, subject, literals_nodes, name_slug)
         else:
             form = ChangeForm(request.user, site_ns_type, subject, literals_nodes)
-
 
     custom_context = rdf_representation(request, site_ns_type, subject, form, literals_nodes)
     custom_context.update(locals())

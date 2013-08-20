@@ -112,7 +112,7 @@ class RdfTypeForm(forms.Form):
     object_name = forms.CharField(required=True, help_text="You need to create an object for this new type.<br />\
                                   Enter its name in this field. (used for the URL token)")
     object_data_type = forms.BooleanField(required=False, help_text="Should the newly created object have its own unique URL instead of a random identifier? <br />\
-                                          (like brain parts have %s/brain_parts/cerebral-cortex/)" % settings.SITE_ATTRIBUTES['hostname'])
+                                          (like brain parts have /brain_parts/cerebral-cortex/)")
 
 class RenameRdfTypeForm(forms.Form):
     rdf_type = forms.CharField(required=True)
